@@ -2,25 +2,25 @@
 
 ## Current Phase
 
-Phase 2 — Recon & Networking Fundamentals (starting)
+Phase 2 — Recon & Networking Fundamentals (in progress)
 
 ---
 
 ## Current Module
 
-2.1 — next up
+2.2 — Nmap (basic scanning done, version detection next)
 
 ---
 
 ## Current Lesson
 
-Not yet started
+Module 2.2 — Nmap version detection
 
 ---
 
 ## Current Objective
 
-Begin Phase 2, Module 2.1.
+Continue Module 2.2 with Nmap version detection (moving past port-number guessing to confirmed service versions).
 
 ---
 
@@ -32,6 +32,8 @@ Begin Phase 2, Module 2.1.
 - 1.2 — Isolated network `labnet` created and verified active
 - 1.3 — Kali VM installed, running headless via SSH
 - 1.4 — Metasploitable2 converted (vmdk->qcow2), imported, running on labnet
+- 2.1 — TCP/IP concepts needed for scanning (port states: open/closed/filtered, TCP vs UDP basics); tested open vs closed ports manually with netcat (nc -zv) against Metasploitable2; verified services manually (21 ftp, 22 ssh, 23 telnet open; 12345 refused)
+- 2.2 (partial, in progress) — basic nmap default scan run against Metasploitable2; learned PORT/STATE/SERVICE output interpretation (service column is a port-based guess, not confirmed); researched unfamiliar services (512 exec/rexec, 53 dns, 6667 irc)
 
 ---
 
