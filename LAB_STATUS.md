@@ -2,25 +2,25 @@
 
 ## Current Phase
 
-Phase 2 — Recon & Networking Fundamentals (in progress)
+Phase 2 — COMPLETE. Phase 3 (Linux Exploitation Basics) starting next.
 
 ---
 
 ## Current Module
 
-2.2 — Nmap (basic scanning done, version detection next)
+Phase 3, Module 3.1 — next up
 
 ---
 
 ## Current Lesson
 
-Module 2.2 — Nmap version detection
+Not yet started
 
 ---
 
 ## Current Objective
 
-Continue Module 2.2 with Nmap version detection (moving past port-number guessing to confirmed service versions).
+Begin Phase 3: exploit a vulnerable service on Metasploitable2 via Metasploit framework basics.
 
 ---
 
@@ -33,13 +33,16 @@ Continue Module 2.2 with Nmap version detection (moving past port-number guessin
 - 1.3 — Kali VM installed, running headless via SSH
 - 1.4 — Metasploitable2 converted (vmdk->qcow2), imported, running on labnet
 - 2.1 — TCP/IP concepts needed for scanning (port states: open/closed/filtered, TCP vs UDP basics); tested open vs closed ports manually with netcat (nc -zv) against Metasploitable2; verified services manually (21 ftp, 22 ssh, 23 telnet open; 12345 refused)
-- 2.2 (partial, in progress) — basic nmap default scan run against Metasploitable2; learned PORT/STATE/SERVICE output interpretation (service column is a port-based guess, not confirmed); researched unfamiliar services (512 exec/rexec, 53 dns, 6667 irc)
+- 2.2 — nmap default scan + version detection (-sV) against Metasploitable2; learned PORT/STATE/SERVICE/VERSION output interpretation; identified vsftpd 2.3.4 as a known-backdoored version
+- 2.3 — passive/OSINT recon concepts (brief, not applicable to lab target)
+- 2.4 — manual enumeration methodology: anonymous FTP login (works), Samba anonymous access + confirmed anonymous write to `tmp` share (uploaded test file via smbclient put), NFS export of entire root filesystem to any host, mounted read-write with no auth
 
 ---
 
 ## Completed Labs
 
 - Capstone 1 — PASSED. Kali<->Metasploitable2 reachable over labnet; host's real network (wlan0) confirmed separate from labnet (virbr1); host-to-VM reachability on virbr1 is expected/normal (host owns the bridge), true isolation guarantee is VM-to-internet/LAN blocking, confirmed.
+- Capstone 2 — PASSED. Full written recon report produced (capstone2_recon_report.md) covering all 23 open ports on Metasploitable2, versions, and attack rationale per port. Confirmed findings: anonymous FTP, anonymous writable Samba share, unauthenticated NFS root export.
 
 ---
 
@@ -103,6 +106,9 @@ Note: no internet access inside labnet — will need temporary connectivity when
 - Disk image conversion (qemu-img)
 - Linux/terminal troubleshooting: faillock/sudo lockouts, libvirt storage permissions, session/system URI mismatch, bash vs zsh config file mismatch, corrupted terminal state from TERM=xterm-kitty against old SSH daemons (fix: export TERM=xterm-256color, or `reset`/new terminal)
 - Basic network isolation verification (ping tests across host/VMs, reading `ip a` to distinguish real NIC from virtual bridges)
+- Nmap: default scan and -sV version detection, reading PORT/STATE/SERVICE/VERSION output
+- Manual service enumeration: anonymous FTP login, smbclient share listing/put upload, NFS showmount/mount
+- Basic Linux fundamentals picked up along the way: `ls`/`ls -a`/`ls -l` flags, reading permission strings (d = directory), distinguishing a real Linux shell from a protocol-specific shell (smbclient's `smb:\>` prompt only understands its own commands, not standard Linux commands)
 
 ---
 
@@ -129,4 +135,4 @@ Methodical, doesn't give up on unclear errors; comfortable running diagnostic co
 
 # Next Objective
 
-Phase 2, Module 2.1: TCP/IP refresher scoped to what's needed for scanning.
+Phase 3, Module 3.1: exploit a vulnerable service on Metasploitable2 using Metasploit framework basics. (Strong candidate given recon: vsftpd 2.3.4 backdoor, or the pre-existing root bindshell on port 1524.)
